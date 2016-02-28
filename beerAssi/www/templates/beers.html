@@ -1,0 +1,17 @@
+<ion-view view-title="Beers">
+  <ion-content>
+  	<span class="bar bar-header">
+  		<button class="button" ng-click=searchPage();>Search</button>
+  	</span>
+    <ion-list>
+    <!-- Link to specifc detail in page: this case is beer api -->
+      <ion-item ng-click=getInfo(); ng-repeat="data in beerInfo">
+        <span>{{data.nameDisplay}}</span>
+        <!-- <span>{{title}}</span> -->
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+
+<!-- href="#/app/BeerInfo/{{stuff.BeerData}}" -->
+<!-- <span><img src={{stuff.labels.icon}}></span> -->
