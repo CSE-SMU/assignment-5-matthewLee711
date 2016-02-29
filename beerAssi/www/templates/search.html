@@ -3,10 +3,22 @@
   <!-- List Inset puts searched items into list -->
   	<div class="list list-inset">
   		<!-- Allows user input -->
-  		<label class="item item-input">
-  			<i class="icon ion-search placeholder-icon"></i>
-	    	<input type="text" placeholder="Search" ng-model="form.name" ng-required="required">
-  		</label>
+  		<ion-toggle ng-model="settingsList.organic" toggle-class="toggle-calm">Organic?</ion-toggle>
+	    <label class="item item-input">
+	      <i class="icon ion-search placeholder-icon"></i>
+	      <input type="text" ng-model="settingsList.searchInput" placeholder="What year of beer?">
+	    </label>
+	    <label class="item item-input">
+	      <i class="icon ion-search placeholder-icon"></i>
+	      <input type="text" ng-model="settingsList.abv" placeholder="Alcohol content?">
+	    </label>
+	    <label class="item item-input">
+	      <i class="icon ion-search placeholder-icon"></i>
+	      <input type="text" ng-model="settingsList.ibu" placeholder="Bitterness on scale?">
+	    </label>
+	    <ion-toggle ng-model="settingsList.verified" toggle-class="toggle-calm">Is it verified?</ion-toggle>
+
+
   	</div>
   </ion-content>
   <!-- Search bar -->
