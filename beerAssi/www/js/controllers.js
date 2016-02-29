@@ -7,7 +7,7 @@ app.factory('BeerData', function(){
   return {data: {}};
 })
 
-app.factory('details', function(){
+app.factory('beerDetails', function(){
   return {data: {}};
 })
 
@@ -22,8 +22,8 @@ app.controller('SearchCtrl', function($scope, $state, $http, BeerData) {
       url: 'https://salty-taiga-88147.herokuapp.com/beers' // the link to proxy
       //If call successful, store response into BeerData
     }).then(function successCallback(response) {
-      BeerData.data = response.data;   // save the response data in the factory
-      //console.log(BeerData.data); //.data[0].id
+      BeerData.data = response.data.data;   // save the response data in the factory
+      //console.log(BeerData.data.data[0].id); //.data[0].id
       $state.go('app.beers');          // go to the beer results state
     }, function errorCallBack(response){
       console.log('fail');
@@ -31,18 +31,11 @@ app.controller('SearchCtrl', function($scope, $state, $http, BeerData) {
   }
 })
 
-app.controller('BeersCtrl', function($scope, $http, $state, BeerData) {
-  // $scope.beerInfo = [
-  //   { "item": 'Reggae', id: 1 },
-  //   { "item": 'Chill', id: 2 },
-  //   { "item": 'Dubstep', id: 3 },
-  //   { "item": 'Indie', id: 4 },
-  //   { "item": 'Rap', id: 5 },
-  //   { "item": 'Cowbell', id: 6 }
-  // ];
+app.controller('BeersCtrl', function($scope, $http, $state, BeerData, beerDetails) {
+  
   console.log('Made ittobeer');
   console.log(BeerData.data);
-  $scope.BeerInfo = BeerData.data;
+  $scope.beerArray = BeerData.data;
   
 
 
@@ -50,11 +43,17 @@ app.controller('BeersCtrl', function($scope, $http, $state, BeerData) {
     console.log('about to go to search');
     $state.go('app.search');  
   } 
-  $scope.getInfo = function() {
-    console.log('ummm');
+  $scope.getInfo = function(item) {
+    beerDetails.data = item;
+    $state.go('app.details');
   }
 
 })
 
-app.controller('BeerCtrl', function($scope, $stateParams) {
+app.controller('DetailsCtrl', function($scope, $http, $state, BeerData, beerDetails) {
+  $scope.itemDetails = beerDetails.data;
+
+  $scope.returnHome = function() {
+    $state.go('app.search');
+  };
 });
